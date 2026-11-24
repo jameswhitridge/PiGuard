@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PiGuard</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+    <header class="topbar">
+        <div>
+            <h1>PiGuard</h1>
+            <p>Home Network Security Monitor</p>
+        </div>
+
+        <div class="monitoring-status">
+            <span class="status-dot"></span>
+            MONITORING
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <section class="summary-grid">
+
+            <div class="stat-card">
+                <p>KNOWN DEVICES</p>
+                <h2 id="knownDevices">—</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>UNTRUSTED</p>
+                <h2 id="untrustedDevices">—</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>ACTIVE ALERTS</p>
+                <h2 id="activeAlerts">—</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>LAST SCAN</p>
+                <h2 id="lastScanDevices">—</h2>
+                <span id="lastScanTime">Waiting for data...</span>
+            </div>
+
+        </section>
+
+
+        <section class="panel">
+
+            <div class="panel-header">
+                <div>
+                    <h2>Security Alerts</h2>
+                    <p>Recent network security events</p>
+                </div>
+            </div>
+
+            <div id="alertList">
+                <p class="muted">Loading alerts...</p>
+            </div>
+
+        </section>
+
+
+        <section class="panel">
+
+            <div class="panel-header">
+                <div>
+                    <h2>Device Inventory</h2>
+                    <p>Devices discovered by PiGuard</p>
+                </div>
+
+                <button
+                    class="secondary-button"
+                    onclick="loadDashboard()"
+                >
+                    Refresh
+                </button>
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Device</th>
+                            <th>IP Address</th>
+                            <th>Vendor</th>
+                            <th>MAC Address</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="deviceTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <div id="portsModal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="portsTitle">Open Ports</h2>
+                    <p>Known TCP services for this device</p>
+                </div>
+
+                <button
+                    class="close-button"
+                    onclick="closePorts()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div id="portsContent">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script
+        src="{{ url_for('static', filename='dashboard.js') }}"
+    ></script>
+
+</body>
+</html>

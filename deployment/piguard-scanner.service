@@ -1,0 +1,15 @@
+[Unit]
+Description=PiGuard Network Security Scanner
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=piguard_admin
+Group=piguard_admin
+
+WorkingDirectory=/home/piguard_admin/piguard
+
+Environment="PATH=/home/piguard_admin/piguard/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+ExecStart=/home/piguard_admin/piguard/.venv/bin/python /home/piguard_admin/piguard/scanner/scanner.py

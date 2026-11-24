@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+.venv/
+
+# PiGuard runtime data
+data/*.db
+data/*.json
+data/*backup*
+
+# Environment/secrets
+.env
+*.env
+
+# Editor files
+.vscode/
+.idea/
+.DS_Store

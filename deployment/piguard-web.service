@@ -1,0 +1,19 @@
+[Unit]
+Description=PiGuard Web Dashboard
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=piguard_admin
+Group=piguard_admin
+
+WorkingDirectory=/home/piguard_admin/piguard
+
+ExecStart=/home/piguard_admin/piguard/.venv/bin/gunicorn --workers 2 --bind 0.0.0.0:5000 web.app:app
+
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
